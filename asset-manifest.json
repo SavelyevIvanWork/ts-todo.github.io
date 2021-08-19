@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/ts-todo.github.io/static/css/main.a617e044.chunk.css",
+    "main.js": "/ts-todo.github.io/static/js/main.00fc3b48.chunk.js",
+    "main.js.map": "/ts-todo.github.io/static/js/main.00fc3b48.chunk.js.map",
+    "runtime-main.js": "/ts-todo.github.io/static/js/runtime-main.84f057be.js",
+    "runtime-main.js.map": "/ts-todo.github.io/static/js/runtime-main.84f057be.js.map",
+    "static/js/2.1d270e1d.chunk.js": "/ts-todo.github.io/static/js/2.1d270e1d.chunk.js",
+    "static/js/2.1d270e1d.chunk.js.map": "/ts-todo.github.io/static/js/2.1d270e1d.chunk.js.map",
+    "index.html": "/ts-todo.github.io/index.html",
+    "static/css/main.a617e044.chunk.css.map": "/ts-todo.github.io/static/css/main.a617e044.chunk.css.map",
+    "static/js/2.1d270e1d.chunk.js.LICENSE.txt": "/ts-todo.github.io/static/js/2.1d270e1d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.84f057be.js",
+    "static/js/2.1d270e1d.chunk.js",
+    "static/css/main.a617e044.chunk.css",
+    "static/js/main.00fc3b48.chunk.js"
+  ]
+}
