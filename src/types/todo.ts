@@ -1,12 +1,12 @@
 export interface TodoState {
-    todos: Todo[]
+    todos: TodoType[]
     loading: boolean
     error: null | string
     page: number
     limit: number
 }
 
-export type Todo = {
+export type TodoType = {
     id: string,
     title: string,
     completed: boolean
@@ -20,6 +20,7 @@ export enum TodoActionTypes {
     ADD_TODO = 'ADD_TODO',
     REMOVE_TODO = 'REMOVE_TODO',
     COMPLETED_TODO = 'COMPLETED_TODO',
+    EDIT_TODO = 'EDIT_TODO'
 }
 
 interface FetchTodosAction {
@@ -40,7 +41,7 @@ interface FetchSetTodoAction {
 
 interface AddTodoAction {
     type: TodoActionTypes.ADD_TODO
-    payload: Todo
+    payload: TodoType
 }
 
 interface RemoveTodoAction {
@@ -52,4 +53,10 @@ interface CompletedTodoAction {
     payload: string
 }
 
-export type TodoAction = FetchTodosAction | FetchTodosSuccessAction | FetchTodosErrorAction | FetchSetTodoAction | AddTodoAction | RemoveTodoAction | CompletedTodoAction
+interface EditTodoAction {
+    type: TodoActionTypes.EDIT_TODO
+    payload: {id: string, title: string}
+}
+
+export type TodoAction = FetchTodosAction | FetchTodosSuccessAction | FetchTodosErrorAction
+    | FetchSetTodoAction | AddTodoAction | RemoveTodoAction | CompletedTodoAction | EditTodoAction

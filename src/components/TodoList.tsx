@@ -1,24 +1,46 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useMemo} from "react";
 import {useActions} from "../hooks/useAction";
 import {useTypedSelector} from "../hooks/useTypedSelector";
-import Todo from "./Todo";
+
 import {List} from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import {FilterActionTypes} from "../types/filter";
+import {TodoType} from "../types/todo";
+import Todo from "./Todo";
+import Loader from "./Loader";
+
+const getVisibleTodos = (sort: FilterActionTypes, todos: TodoType[]) => {
+    switch (sort) {
+        case FilterActionTypes.SORT_ALL:
+            return todos
+        case FilterActionTypes.SORT_CURRENT:
+            return todos.filter(todo => !todo.completed)
+        case FilterActionTypes.SORT_COMPLETED:
+            return todos.filter(todo => todo.completed)
+        default:
+            return todos
+    }
+}
 
 const TodoList: React.FC = () => {
     const {page, error, loading, limit, todos} = useTypedSelector(state => state.todo)
+    const sort = useTypedSelector(state => state.filter)
     const {fetchTodos, setTodoPage} = useActions()
     const pages = [1, 2, 3, 4, 5]
 
     useEffect(() => {
         fetchTodos(page, limit)
     }, [page])
+
+    const filterTodo = useMemo(() => getVisibleTodos(sort, todos), [sort, todos])
+
     return (
-        <>
-            {loading && <h1>Идёт загрузка...</h1>}
+        <Grid container item justifyContent="center" xs={12}>
+            {loading && <Loader />}
             {error && <h1>{error}</h1>}
 
-            <List style={{width: '50%'}}>
-                {todos.map(todo =>
+            <List style={{width: '100%'}}>
+                {filterTodo.map(todo =>
                     <Todo
                         key={todo.id}
                         id={todo.id}
@@ -36,7 +58,7 @@ const TodoList: React.FC = () => {
             {/*            {item}*/}
             {/*        </div>)}*/}
             {/*</div>*/}
-        </>
+        </Grid>
     )
 }
 

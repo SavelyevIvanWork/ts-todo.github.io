@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import axios from "axios";
-import {Todo, TodoAction, TodoActionTypes} from "../../types/todo";
+import {TodoType, TodoAction, TodoActionTypes} from "../../types/todo";
 
 export const fetchTodos = (page = 1, limit = 10) => async (dispatch: Dispatch<TodoAction>) => {
     try {
@@ -19,14 +19,17 @@ export const setTodoPage = (page: number): TodoAction => {
     return {type: TodoActionTypes.SET_TODO_PAGE, payload: page}
 }
 
-export const addTodo = (todo: Todo): TodoAction => {
+export const addTodo = (todo: TodoType): TodoAction => {
     return {type: TodoActionTypes.ADD_TODO, payload: todo}
 }
 
-export const removeTodo = (id: Todo["id"]): TodoAction => {
+export const removeTodo = (id: TodoType["id"]): TodoAction => {
     return {type: TodoActionTypes.REMOVE_TODO, payload: id}
 }
 
-export const completedTodo = (id: Todo["id"]): TodoAction => {
+export const completedTodo = (id: TodoType["id"]): TodoAction => {
     return {type: TodoActionTypes.COMPLETED_TODO, payload: id}
+}
+export const editTodo = (id: TodoType["id"], title: TodoType["title"]): TodoAction => {
+    return {type: TodoActionTypes.EDIT_TODO, payload: {id, title}}
 }

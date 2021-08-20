@@ -52,6 +52,17 @@ export const todoReducer = (state = initialState, action: TodoAction): TodoState
                     return todo
                 })
             }
+        case TodoActionTypes.EDIT_TODO:
+            console.log(action.payload)
+            return {
+                ...state,
+                todos: state.todos.map(todo => {
+                    if (todo.id === action.payload.id) {
+                        todo.title = action.payload.title
+                    }
+                    return todo
+                })
+            }
         default:
             return state
     }
